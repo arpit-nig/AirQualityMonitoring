@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/liveTrackerFragment">
+
+    <fragment
+        android:id="@+id/liveTrackerFragment"
+        android:name="com.nigamar.airquality.live_monitoring.ui.fragment.LiveTrackerFragment"
+        android:label="LiveTrackerFragment" >
+        <action
+            android:id="@+id/action_liveTrackerFragment_to_historicalDataFragment"
+            app:destination="@id/historicalDataFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/historicalDataFragment"
+        android:name="com.nigamar.airquality.live_monitoring.ui.fragment.HistoricalDataFragment"
+        android:label="HistoricalDataFragment">
+        <argument
+            android:name="cityName"
+            app:argType="string" />
+    </fragment>
+
+</navigation>

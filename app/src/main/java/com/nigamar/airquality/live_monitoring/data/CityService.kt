@@ -11,6 +11,7 @@ import com.nigamar.airquality.live_monitoring.data.dto.CityDto
 import com.nigamar.airquality.live_monitoring.data.dto.printList
 import com.nigamar.airquality.live_monitoring.data.dto.toCityList
 import com.nigamar.airquality.live_monitoring.data.local.CityDao
+import com.nigamar.airquality.live_monitoring.domain.repository.CityRepo
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import okhttp3.*
@@ -31,6 +32,9 @@ class CityService : LifecycleService() {
     @Inject
     lateinit var gson: Gson
 
+    @Inject
+    lateinit var cityRepo: CityRepo
+
     private val listType = object : TypeToken<List<CityDto>>(){}.type
 
     private lateinit var webSocket: WebSocket
@@ -44,9 +48,15 @@ class CityService : LifecycleService() {
         override fun onMessage(webSocket: WebSocket, text: String) {
             super.onMessage(webSocket, text)
             val cityDtoList = gson.fromJson(text,listType) as List<CityDto>
-            lifecycleScope.launch {
-                // a repo will be used to update the current in memory cache and the db
+            if (cityDtoList.isNotEmpty()){
+                lifecycleScope.launch {
+                    // a repo will be used to update the current in memory cache and the db
+                    val cityList = cityDtoList.toCityList()
+                    cityRepo.cacheCurrentCityList(cityList)
+                    cityRepo.saveCityData(cityList)
+                }
             }
+
         }
 
         override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
