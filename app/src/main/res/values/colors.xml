@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="quality_good">#55A84F</color>
+    <color name="quality_satisfactory">#A3C853</color>
+    <color name="quality_moderate">#FCF832</color>
+    <color name="quality_poor">#EE9C32</color>
+    <color name="quality_very_poor">#E73F33</color>
+    <color name="quality_severe">#AF2D24</color>
 </resources>
