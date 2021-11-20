@@ -11,7 +11,7 @@ interface CityDao {
     @Insert
     suspend fun saveCityData(cityList: List<City>)
 
-    @Query("select * from cities_table where city_name = :cityName order by modified_at ")
+    @Query("select * from cities_table where city_name = :cityName order by modified_at limit 15")
     fun getCityData(cityName : String) : Flow<List<City>>
 
 }
