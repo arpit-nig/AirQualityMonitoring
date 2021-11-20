@@ -16,17 +16,16 @@ class LiveMonitorViewModel @Inject constructor(
     private val getHistoricalData: GetHistoricalData
 ) : ViewModel() {
 
-    private val _historicalData = MutableLiveData<List<Double>>()
+    private val _historicalData = MutableLiveData<List<Float>>()
     val historicalData = _historicalData
 
     // use this live data to get updates on the live list
     val liveCityData = getLiveData()
 
     private fun getData(cityName : String) = viewModelScope.launch {
-        getHistoricalData.invoke(cityName).collect {
-            // get the list of all the values for the city
-            _historicalData.postValue(it)
-        }
+        val response = getHistoricalData(cityName)
+        // get the list of all the values for the city
+        _historicalData.postValue(response)
     }
 
     fun loadState(cityName : String){

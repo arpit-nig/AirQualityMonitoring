@@ -38,7 +38,10 @@ class HistoricalDataFragment : Fragment(R.layout.fragment_historical_data) {
         line_chart.data = LineData()
         line_chart.description = Description().also {
             it.text = "AQI $cityName"
-            it.textSize = 10f
+            it.textSize = 20f
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                it.textColor = requireContext().getColor(R.color.white)
+            }
         }
     }
 
@@ -46,11 +49,7 @@ class HistoricalDataFragment : Fragment(R.layout.fragment_historical_data) {
     override fun onResume() {
         super.onResume()
         liveMonitorViewModel.historicalData.observe(this, { dataPoints ->
-                updateChartData(
-                    dataPoints.map {
-                        it.toFloat()
-                    }
-                )
+                updateChartData(dataPoints)
         })
     }
 
@@ -71,11 +70,12 @@ class HistoricalDataFragment : Fragment(R.layout.fragment_historical_data) {
         for (i in dataPoint.indices) {
             entries.add(Entry(i.toFloat(),dataPoint[i]))
         }
-        val set = LineDataSet(entries,cityName)
+        val set = LineDataSet(entries,null)
         set.apply {
             lineWidth = 3f
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                color = requireContext().getColor(R.color.black)
+                color = requireContext().getColor(R.color.white)
+                valueTextColor = requireContext().getColor(R.color.white)
             }
             valueTextSize = 10f
         }

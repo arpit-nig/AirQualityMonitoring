@@ -17,7 +17,7 @@ class CityRepoImpl @Inject constructor(
         cityDao.saveCityData(cityList)
     }
 
-    override fun getCityHistoricalData(cityName: String): Flow<List<City>> {
+    override suspend fun getCityHistoricalData(cityName: String): List<City> {
         return cityDao.getCityData(cityName)
     }
 

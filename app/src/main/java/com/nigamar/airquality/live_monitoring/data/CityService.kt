@@ -42,7 +42,7 @@ class CityService : LifecycleService() {
     private val socketListener = object : WebSocketListener() {
         override fun onOpen(webSocket: WebSocket, response: Response) {
             super.onOpen(webSocket, response)
-            Timber.d("WebSocket is open")
+            Timber.d("Connection Open....")
         }
 
         override fun onMessage(webSocket: WebSocket, text: String) {
@@ -50,18 +50,16 @@ class CityService : LifecycleService() {
             val cityDtoList = gson.fromJson(text,listType) as List<CityDto>
             if (cityDtoList.isNotEmpty()){
                 lifecycleScope.launch {
-                    // a repo will be used to update the current in memory cache and the db
-                    val cityList = cityDtoList.toCityList()
-                    cityRepo.cacheCurrentCityList(cityList)
-                    cityRepo.saveCityData(cityList)
+                    val cityList = cityDtoList.toCityList() // map the dto to the list of cities
+                    cityRepo.cacheCurrentCityList(cityList) // expose data as live data to the application
+                    cityRepo.saveCityData(cityList) // cache in the local db to get the historical data
                 }
             }
-
         }
 
         override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
             super.onClosed(webSocket, code, reason)
-            Timber.d("WebSocket is closed")
+            Timber.d("Connection Closed.....")
         }
     }
 
