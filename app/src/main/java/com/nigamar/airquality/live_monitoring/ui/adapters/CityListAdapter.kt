@@ -1,6 +1,5 @@
 package com.nigamar.airquality.live_monitoring.ui.adapters
 
-import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,6 +38,7 @@ class CityListAdapter : RecyclerView.Adapter<CityListAdapter.CityItemViewHolder>
                 air_quality_container.setCardBackgroundColor(
                     itemView.context.resources.getColor(AirQualityMatcher.getAirQualityColor(cityItem.airQuality))
                 )
+                air_quality_text.text = cityItem.airQualityText
                 air_quality_image.setImageResource(AirQualityMatcher.getAirQualityImage(cityItem.airQuality))
                 city_name.text = cityItem.cityName
                 city_aqi.text = cityItem.cityAqi

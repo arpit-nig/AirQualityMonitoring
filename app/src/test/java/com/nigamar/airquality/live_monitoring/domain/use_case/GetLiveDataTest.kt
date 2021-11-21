@@ -39,9 +39,9 @@ class GetLiveDataTest {
     @Test
     fun shouldReturnLatestInsertedDataInTheCache(){
         val cityListItem1 =
-            CityListItem("Delhi", "310.12", AirQualityMatcher.getAirQuality(310.12), "Last Updated 05:30 AM")
+            CityListItem("Delhi", "310.12", AirQualityMatcher.getAirQuality(310.12), AirQualityMatcher.getAirQualityText(310.12),"Last Updated 05:30 AM")
         val cityListItem2 =
-            CityListItem("Gurgaon", "315.52", AirQualityMatcher.getAirQuality(315.52), "Last Updated 05:30 AM")
+            CityListItem("Gurgaon", "315.52", AirQualityMatcher.getAirQuality(315.52),AirQualityMatcher.getAirQualityText(315.52), "Last Updated 05:30 AM")
         val expected = listOf(cityListItem1, cityListItem2)
         fakeCityRepo.cacheCurrentCityList(cityList1)
         fakeCityRepo.cacheCurrentCityList(cityList2)

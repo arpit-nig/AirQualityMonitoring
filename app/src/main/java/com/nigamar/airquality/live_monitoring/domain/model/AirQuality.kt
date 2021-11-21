@@ -78,4 +78,16 @@ object AirQualityMatcher {
         }
     }
 
+    fun getAirQualityText(cityAqi: Double): String {
+        return when(cityAqi.toInt()) {
+            in 0..50 -> good.name
+            in 51..100 -> satisfactory.name
+            in 101..200 -> moderate.name
+            in 201..300 -> poor.name
+            in 301..400 -> veryPoor.name
+            in 401..500 -> severe.name
+            else -> good.name
+        }
+    }
+
 }

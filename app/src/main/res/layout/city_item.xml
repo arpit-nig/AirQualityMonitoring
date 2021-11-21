@@ -59,6 +59,19 @@
             android:layout_marginEnd="20dp"
             />
 
+        <TextView
+            android:id="@+id/air_quality_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:layout_toEndOf="@id/air_quality_image"
+            />
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

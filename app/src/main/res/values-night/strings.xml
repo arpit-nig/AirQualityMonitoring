@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AirQualityMonitoring</string>
     <string name="info">Info</string>
     <string name="text_good">Air quality is good and poses little or no risk.</string>
     <string name="text_satisfactory">Sensitive individuals should avoid outdoor activity as they may experience respiratory symptoms</string>

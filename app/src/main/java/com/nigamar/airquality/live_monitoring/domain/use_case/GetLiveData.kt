@@ -34,7 +34,8 @@ class GetLiveData @Inject constructor(
             cityName = city.cityName,
             cityAqi = String.format("%.2f",city.cityAqi),
             airQuality = AirQualityMatcher.getAirQuality(city.cityAqi),
-            modifiedTime = getModifiedText(city.modifiedAt)
+            modifiedTime = getModifiedText(city.modifiedAt),
+            airQualityText = AirQualityMatcher.getAirQualityText(city.cityAqi)
         )
     }
 
