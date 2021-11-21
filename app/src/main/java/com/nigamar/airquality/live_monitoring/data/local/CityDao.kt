@@ -19,7 +19,7 @@ interface CityDao {
      * this method returns the historical data , can return up to 15 values
      * which can be plotted to se the chart
      * */
-    @Query("select * from cities_table where city_name = :cityName order by modified_at limit 15")
+    @Query("select * from cities_table where city_name = :cityName order by modified_at desc limit 15")
     suspend fun getCityData(cityName : String) : List<City>
 
 }
